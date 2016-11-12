@@ -1,7 +1,9 @@
 import os
+import random
 import tweepy
 
 import oauthDance
+import predicates
 import messages
 
 auth = tweepy.OAuthHandler(
@@ -23,4 +25,16 @@ else:
     results = api.search(q='#dogpark')
 
     for result in results:
-        print(result.text)
+        if predicates.ignoreTweet(api, result):
+            continue
+        print(result.text, result.source_url)
+        print(dir(result.user), result.user.id)
+        statusParams = {
+            'status': random.choice(messages.sentences),
+            'in_reply_to_status_id': result.id
+        }
+        if result.place:
+            statusParams['place_id'] = result.place.id
+        print('DEBUG', statusParams)
+        # api.update_status(**statusParams)
+        break
