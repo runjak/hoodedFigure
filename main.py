@@ -2,6 +2,7 @@ import os
 import tweepy
 
 import oauthDance
+import messages
 
 auth = tweepy.OAuthHandler(
     os.getenv('CONSUMER_KEY'),
