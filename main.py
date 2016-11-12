@@ -31,8 +31,6 @@ else:
             for status in results:
                 if predicates.ignoreTweet(api, status):
                     continue
-                print(status.text, status.source_url)
-                print(dir(status.user))
                 replyData = messages.replyDictFromTweet(status)
                 if replyData is not None:
                     reply = api.update_status(**replyData)
