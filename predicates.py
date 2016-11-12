@@ -1,3 +1,7 @@
+def tweetIsRetweet(status):
+    return status.retweet is not None
+
+
 def tweetIsReply(status):
     return status.in_reply_to_status_id is not None
 
@@ -11,6 +15,7 @@ def tweetIsByMe(api, status):
 
 
 def ignoreTweet(api, status):
-    return tweetIsReply(status) \
+    return tweetIsRetweet(status) \
+        or IsReply(status) \
         or tweetIsQuote(status) \
         or tweetIsByMe(api, status)
