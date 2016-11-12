@@ -1,10 +1,12 @@
 import os
-import random
+import time
 import tweepy
 
 import oauthDance
-import predicates
 import messages
+import predicates
+import search
+
 
 auth = tweepy.OAuthHandler(
     os.getenv('CONSUMER_KEY'),
@@ -22,19 +24,24 @@ else:
 
     api = tweepy.API(auth)
 
-    results = api.search(q='#dogpark')
-
-    for result in results:
-        if predicates.ignoreTweet(api, result):
-            continue
-        print(result.text, result.source_url)
-        print(dir(result.user), result.user.id)
-        statusParams = {
-            'status': random.choice(messages.sentences),
-            'in_reply_to_status_id': result.id
-        }
-        if result.place:
-            statusParams['place_id'] = result.place.id
-        print('DEBUG', statusParams)
-        # api.update_status(**statusParams)
-        break
+    lastTweetId = None
+    while True:
+        try:
+            results = search.findDogPark(api, lastTweetId)
+            for status in results:
+                if predicates.ignoreTweet(api, status):
+                    continue
+                print(status.text, status.source_url)
+                print(dir(status.user))
+                replyData = messages.replyDictFromTweet(status)
+                if replyData is not None:
+                    reply = api.update_status(**replyData)
+                    lastTweetId = reply.id
+                    print('Sent message with id %s. Sleeping 30s.' %
+                          lastTweetId)
+                    time.sleep(30)
+            print('Sleeping a minute after search finished.')
+            time.sleep(60)
+        except tweepy.RateLimitError:
+            print('Sleeping 15 minutes.')
+            time.sleep(15 * 60)
