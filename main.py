@@ -4,7 +4,8 @@ import tweepy
 import oauthDance
 
 auth = tweepy.OAuthHandler(
-    os.getenv('CONSUMER_KEY'), os.getenv('CONSUMER_SECRET'))
+    os.getenv('CONSUMER_KEY'),
+    os.getenv('CONSUMER_SECRET'))
 
 
 access_token = os.getenv('ACCESS_TOKEN')
@@ -16,10 +17,9 @@ else:
     auth.set_access_token(
         os.getenv('ACCESS_TOKEN'), os.getenv('ACCESS_TOKEN_SECRET'))
 
-    print('AUTH URL:', auth.get_authorization_url())
-
     api = tweepy.API(auth)
 
-    public_tweets = api.home_timeline()
-    for tweet in public_tweets:
-        print(tweet.text)
+    results = api.search(q='#dogpark')
+
+    for result in results:
+        print(result.text)
