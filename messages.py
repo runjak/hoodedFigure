@@ -22,6 +22,11 @@ sentences = [
     "Dangerous with their sharp claws and many heads.",
     "There is a time and place for everything @%s. "
     "But it's not the #dogpark. An acid pit is much saver.",
+    "@%s do you know that the #dogpark is actually a pond of molten lava?",
+    "@%s beware - flesh entering the #dogpark without correct papers "
+    "will actually turn into a liquid.",
+    "Only truely evil spirits may enter the #dogpark. Are you one of us, @%s?",
+    "I heard a five headed dragon near the #dogpark might try to dine on @%s.",
 ]
 
 
