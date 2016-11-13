@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def tweetIsRetweet(status):
     if status.retweeted:
         print('Skipping retweet…')

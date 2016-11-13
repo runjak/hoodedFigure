@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def getLastTweetId(api):
     timeline = api.home_timeline()
     return max([tweet.id for tweet in timeline])
