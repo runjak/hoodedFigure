@@ -1,20 +1,28 @@
 # -*- coding: utf-8 -*-
 def tweetIsRetweet(status):
     if status.retweeted:
-        print('Skipping retweet…')
+        print('Retweet:', status.id)
     return status.retweeted
 
 
 def tweetIsReply(status):
-    return status.in_reply_to_status_id is not None
+    isReply = status.in_reply_to_status_id is not None
+    if isReply:
+        print('Reply:', status.id)
+    return isReply
 
 
 def tweetIsQuote(status):
+    if status.is_quote_status:
+        print('Quote:', status.id)
     return status.is_quote_status
 
 
 def tweetIsByMe(api, status):
-    return status.user.id == api.me().id
+    isByMe = status.user.id == api.me().id
+    if isByMe:
+        print('By me:', status.id)
+    return isByMe
 
 
 def ignoreTweet(api, status):
