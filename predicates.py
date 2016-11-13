@@ -16,6 +16,6 @@ def tweetIsByMe(api, status):
 
 def ignoreTweet(api, status):
     return tweetIsRetweet(status) \
-        or IsReply(status) \
+        or tweetIsReply(status) \
         or tweetIsQuote(status) \
         or tweetIsByMe(api, status)
