@@ -17,6 +17,7 @@ sentences = [
 def replyDictFromTweet(status):
         msg = random.choice(sentences) % status.user.screen_name
         if len(msg) > 140:
+            print('Cannot send message:', msg)
             return None
         statusParams = {
             'status': msg,

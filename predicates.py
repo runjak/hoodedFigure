@@ -1,5 +1,7 @@
 def tweetIsRetweet(status):
-    return status.retweet is not None
+    if status.retweeted:
+        print('Skipping retweet…')
+    return status.retweeted
 
 
 def tweetIsReply(status):

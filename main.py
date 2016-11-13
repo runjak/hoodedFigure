@@ -2,6 +2,7 @@ import os
 import time
 import tweepy
 
+import helper
 import oauthDance
 import messages
 import predicates
@@ -25,21 +26,30 @@ else:
     api = tweepy.API(auth)
 
     lastTweetId = None
-    while True:
-        try:
-            results = search.findDogPark(api, lastTweetId)
-            for status in results:
-                if predicates.ignoreTweet(api, status):
-                    continue
+
+    def performMain(memo=dict()):
+        lastTweetId = memo['lastTweetId'] if 'lastTweetId' in memo else None
+        print('Searching results after', lastTweetId)
+        results = search.findDogPark(api, lastTweetId)
+
+        def mkHandleTweet(status):
+
+            def handleTweet():
                 replyData = messages.replyDictFromTweet(status)
                 if replyData is not None:
                     reply = api.update_status(**replyData)
-                    lastTweetId = reply.id
-                    print('Sent message with id %s. Sleeping 30s.' %
-                          lastTweetId)
-                    time.sleep(30)
-            print('Sleeping a minute after search finished.')
-            time.sleep(60)
-        except tweepy.RateLimitError:
-            print('Sleeping 15 minutes.')
-            time.sleep(15 * 60)
+                    memo['lastTweetId'] = reply.id
+                    helper.printAndSleep(
+                        30, 'Sent message with id %s. Sleeping 30s.' %
+                        memo['lastTweetId'])
+            return handleTweet
+
+        for status in results:
+            print('Considering result', status.id)
+            if predicates.ignoreTweet(api, status):
+                continue
+            helper.withRateLimit(mkHandleTweet(status))
+
+    while True:
+        helper.withRateLimit(performMain)
+        helper.printAndSleep(60, 'Sleeping a minute between searches.')
