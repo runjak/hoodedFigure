@@ -27,6 +27,16 @@ sentences = [
     "will actually turn into a liquid.",
     "Only truely evil spirits may enter the #dogpark. Are you one of us, @%s?",
     "I heard a five headed dragon near the #dogpark might try to dine on @%s.",
+    "@%s and I are sure that the #dogpark is protected by a smiling god "
+    "that replaces your blood with liquid led.",
+    "In the #dogpark everyone becomes a stick in an eternal play of fetch. "
+    "Be careful @%s.",
+    "You may eat your own dogfood - but please: "
+    "NEVER walk your own #dogpark, @%s.",
+    "There is a non-zero chance that thinking the word #dogpark "
+    "replaces your neurons with ants, @%s.",
+    "The #dogpark will not harm you, @%s. "
+    "Provided you have wings. And antlers.",
 ]
 
 
