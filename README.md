@@ -5,7 +5,7 @@ This is a small toy project for a Twitter bot
 that uses the [tweepy](https://tweepy.readthedocs.io) library
 to interact with twitter.
 
-I'm a fan of welcome to nightvale,
+I'm a fan of [welcome to nightvale](http://www.welcometonightvale.com/),
 where there is a dogpark that is only used by hooded figures.
 The hooded figures do not want people mentioning the dogpark - or thinking of it.
 They especially do not want dogs in the dogpark.
