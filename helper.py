@@ -8,9 +8,9 @@ def printAndSleep(t, msg):
     time.sleep(t)
 
 
-def withRateLimit(λ):
+def withRateLimit(func):
     while True:
         try:
-            return λ()
+            return func()
         except tweepy.RateLimitError:
             printAndSleep(15*60, 'Sleeping 15 minutes.')
