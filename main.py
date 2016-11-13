@@ -38,8 +38,8 @@ else:
             def handleTweet():
                 replyData = messages.replyDictFromTweet(status)
                 if replyData is not None:
-                    reply = api.update_status(**replyData)
-                    memo['lastTweetId'] = reply.id
+                    api.update_status(**replyData)
+                    memo['lastTweetId'] = status.id
                     helper.printAndSleep(
                         30, 'Sent message with id %s. Sleeping 30s.' %
                         memo['lastTweetId'])
