@@ -11,7 +11,17 @@ sentences = [
     "Just make sure NOT TO ENTER the #dogpark @%s.",
     "Why would you mention such nasty things like a #dogpark @%s?",
     "Remember to share your #dogpark experience "
-    "so others may also survive @%s!"
+    "so others may also survive @%s!",
+    "Hi @%s! City council discourages the term #dogpark for security reasons.",
+    "You are not a dog, @%s! Please don't think of the #dogpark.",
+    "@%s in the #dogpark all dogs have 8 legs. Scary.",
+    "Please return to safety @%s! Don't linger in the #dogpark.",
+    "Hey @%s… I got notice that the #dogpark "
+    "will get fortified with spikes and lava soon.",
+    "Beware @%s. Today the #dogpark is full of deer. "
+    "Dangerous with their sharp claws and many heads.",
+    "There is a time and place for everything @%s. "
+    "But it's not the #dogpark. An acid pit is much saver.",
 ]
 
 
